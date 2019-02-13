@@ -14,7 +14,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lambdadataInvegat2",
-    version="0.0.8",
+    version="0.0.10",
     author="invegat",
     description="A collection of Data Science helper functions",
     long_description=LONG_DESCRIPTION,
