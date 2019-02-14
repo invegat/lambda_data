@@ -1,6 +1,0 @@
-{
-    "python.pythonPath": "/home/mark/.local/share/virtualenvs/lambda_data-l1t068zK/bin/python",
-    "python.linting.pylintEnabled": false,
-    "python.linting.pep8Enabled": true,
-    "python.linting.enabled": true
-}
