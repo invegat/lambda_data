@@ -1,7 +1,8 @@
 import unittest
 from pathlib import Path
 import os
-from lambda_invegat2.compare_linear_xgboost import compare_linear_xgboost as co
+from lambda_invegat2 import compare_linear_xgboost as co
+
 
 class TestPlotXgboost(unittest.TestCase):
     def setUp(self):
