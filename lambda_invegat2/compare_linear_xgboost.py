@@ -8,24 +8,23 @@ from sklearn.linear_model import LogisticRegression
 from mlxtend.plotting import plot_decision_regions
 import numpy as np
 import xgboost as xgb
-from train_validation_test_split import train_validation_test_split
+from lambda_invegat2.train_validation_test_split import train_validation_test_split as tv
 
 
 # # Try re-running the cell with different values for these parameters
 n_samples = 1000
 class_sep = 0.8
-
+weights = (0.95, 0.05)
 
 class compare_linear_xgboost:
-    def __init__(self, n_samples = 1000, class_sep =  0.8):
+    def __init__(self):
         self.ratio = np.linspace(0.1, 10, 20)
         X, y = make_classification(n_samples=n_samples, n_features=2, n_informative=2,
                                    n_redundant=0, n_repeated=0, n_classes=2,
                                    n_clusters_per_class=1, weights=weights,
                                    class_sep=class_sep, random_state=0)
         self.X_train, self.X_val, self.X_test, self.y_train, self.y_val, self.y_test = \
-            train_validation_test_split(
-                X, y, train_size=0.8, val_size=0.1, test_size=0.1, random_state=1)
+            tv(X, y, train_size=0.8, val_size=0.1, test_size=0.1, random_state=1)
         self.dtrain = xgb.DMatrix(self.X_train, label=self.y_train)
         self.param = {}
         # use softmax multi-class classification
