@@ -6,7 +6,7 @@ from lambda_invegat2.compare_linear_xgboost import compare_linear_xgboost as co
 class TestPlotXgboost(unittest.TestCase):
     def setUp(self):
         self.co = co()
-        self.total_types, self.test_length, self.fn =  co.plot_xgboost(1,'tmp/test')
+        self.total_types, self.test_length, self.fn =  self.co.plot_xgboost(1,'tmp/test')
         self.path = Path(self.fn)
 
     def test_total(self):
