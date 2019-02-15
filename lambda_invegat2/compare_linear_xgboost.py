@@ -50,7 +50,7 @@ class compare_linear_xgboost:
         fig.savefig(f"tmp/linear_ratio_{r}.png", bbox_inches='tight', format='png')
         plt.close(fig)  
 
-    def plot_xgboost(self, r):
+    def plot_xgboost(self, r, path='tmp'):
         self.dtrain.set_weight([1 if i == 0 else r for i in self.y_train])
         bst = xgb.train(self.param, self.dtrain, self.num_round)
         # # make prediction
@@ -84,8 +84,10 @@ class compare_linear_xgboost:
         if op.shape[0] > 0:
             plt.scatter(op[:, 0], op[:, 1], color='g', marker='s')
         plt.title(f"ratio {r}")
-        fig.savefig(f"tmp/xgboost_ratio_{r}.png", bbox_inches='tight', format='png')
+        fn = f"{path}/xgboost_ratio_{r}.png" 
+        fig.savefig(fn, bbox_inches='tight', format='png')
         plt.close(fig)
+        return(g.shape[0] + o.shape[0] + gp.shape[0] + op.shape[0], self.y_test.shape[0], fn)
 
     def run(self):
         for f in self.ratio:
