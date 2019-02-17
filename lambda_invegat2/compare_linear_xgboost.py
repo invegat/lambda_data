@@ -16,10 +16,12 @@ n_samples = 1000
 class_sep = 0.8
 weights = (0.95, 0.05)
 
+
 class compare_linear_xgboost:
     def __init__(self):
         self.ratio = np.linspace(0.1, 10, 20)
-        X, y = make_classification(n_samples=n_samples, n_features=2, n_informative=2,
+        X, y = make_classification(n_samples=n_samples, n_features=2,
+                                   n_informative=2,
                                    n_redundant=0, n_repeated=0, n_classes=2,
                                    n_clusters_per_class=1, weights=weights,
                                    class_sep=class_sep, random_state=0)
@@ -48,7 +50,7 @@ class compare_linear_xgboost:
         plt.title(f"ratio {r}")
         ax = plot_decision_regions(self.X_val, self.y_val, model, legend=0)
         fig.savefig(f"tmp/linear_ratio_{r}.png", bbox_inches='tight', format='png')
-        plt.close(fig)  
+        plt.close(fig)
 
     def plot_xgboost(self, r, path='tmp'):
         self.dtrain.set_weight([1 if i == 0 else r for i in self.y_train])
@@ -84,7 +86,7 @@ class compare_linear_xgboost:
         if op.shape[0] > 0:
             plt.scatter(op[:, 0], op[:, 1], color='g', marker='s')
         plt.title(f"ratio {r}")
-        fn = f"{path}/xgboost_ratio_{r}.png" 
+        fn = f"{path}/xgboost_ratio_{r}.png"
         fig.savefig(fn, bbox_inches='tight', format='png')
         plt.close(fig)
         return(g.shape[0] + o.shape[0] + gp.shape[0] + op.shape[0], self.y_test.shape[0], fn)
